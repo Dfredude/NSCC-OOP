@@ -15,11 +15,7 @@ public class TestBankAccount {
 		b.setFirst_name("John");
 		b.setLast_name("Doe");
 		System.out.println("Fields after setting them...");
-		System.out.println("Account number: " + b.getAccount_number());
-		System.out.println("Balance: " + b.getBalance());
-		System.out.println("First name: " + b.getFirst_name());
-		System.out.println("Last name: " + b.getLast_name());
-		System.out.println("Address: " + b.getAddress());
+		b.display();
 		
 	}
 
