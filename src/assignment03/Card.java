@@ -1,5 +1,20 @@
 package assignment03;
 
+//		A Card class has fields that store a value (1-10),
+//		a string for the full card name (e.g Ace of Spades),
+//		and a string to hold an image file name (e.g. spades_ace.png).
+//
+//		Create methods to get and set each of the fields.
+//
+//		Create a method named setCard that accepts a number between 1 and 52 and sets the 3 internal attributes with the proper value, card name, and file name (use a switch).
+//
+//		Overload the setCard method to take a String as a second parameter. If the second parameter is "H" or "h", the value of the ace should be 11 instead of 1.
+//
+//		Create a display function to show the class's current state.
+//
+//		Create an application named TestCard and test all methods you created for your Card class.
+
+
 public class Card {
 	int value;
 	String name;
@@ -79,30 +94,25 @@ public class Card {
 	}
 	
 	public void setCard(int number) {
-		this.value = number;
-		this.name = cards[number][0];
-		this.file_name = cards[number][1];
+		if (number < 1 || number > 52) throw new RuntimeException("Not a valid card number!");
+		int value = number % 13 == 0 ? 13 : number%13;
+		setValue(value);
+		number--;
+		setName(cards[number][0]);
+		setFile_name(cards[number][1]);
 	}
 
 	public void setCard(int number, char ace_value) {
-		if (number < 1 || number > 52) throw new RuntimeException("Not a valid card number!");
-		if (ace_value == 'h') this.value = 11;
-		else this.value = number-1;
-		this.name = cards[number-1][0];
-		this.file_name = cards[number-1][1];
+		setCard(number);
+		if (ace_value == 'h' && getValue() == 1) setValue(11);
 	}
 
 	public void displayState(){
-		System.out.println(this.getName());
-		System.out.println(this.getValue());
-		System.out.println("Filename: " + this.getFile_name());
+		System.out.println("Card name: " + getName());
+		System.out.println("Value: " + getValue());
+		System.out.println("Filename: " + getFile_name());
 	}
 }
-
-
-
-
-
 
 
 
